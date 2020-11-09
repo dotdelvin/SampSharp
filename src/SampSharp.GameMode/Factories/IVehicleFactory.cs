@@ -38,7 +38,7 @@ namespace SampSharp.GameMode.Factories
         /// <returns> The <see cref="BaseVehicle" /> created.</returns>
         BaseVehicle Create(VehicleModelType vehicletype, Vector3 position, float rotation, int color1,
             int color2,
-            int respawnDelay = -1, bool addAlarm = false);
+            int respawnDelay = BaseVehicle.DefaultRespawnDelay, bool addAlarm = false);
 
         /// <summary>
         ///     Creates a static <see cref="BaseVehicle" /> in the world.
@@ -56,18 +56,6 @@ namespace SampSharp.GameMode.Factories
         /// <returns> The <see cref="BaseVehicle" /> created.</returns>
         BaseVehicle CreateStatic(VehicleModelType vehicletype, Vector3 position, float rotation, int color1,
             int color2,
-            int respawnDelay, bool addAlarm = false);
-
-        /// <summary>
-        ///     Creates a static <see cref="BaseVehicle" /> in the world.
-        /// </summary>
-        /// <param name="vehicletype">The model for the vehicle.</param>
-        /// <param name="position">The coordinates for the vehicle.</param>
-        /// <param name="rotation">The facing angle for the vehicle.</param>
-        /// <param name="color1">The primary color ID.</param>
-        /// <param name="color2">The secondary color ID.</param>
-        /// <returns> The <see cref="BaseVehicle" /> created.</returns>
-        BaseVehicle CreateStatic(VehicleModelType vehicletype, Vector3 position, float rotation, int color1,
-            int color2);
+            int respawnDelay = BaseVehicle.DefaultRespawnDelay, bool addAlarm = false);
     }
 }

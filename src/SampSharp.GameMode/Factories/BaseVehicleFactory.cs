@@ -48,7 +48,7 @@ namespace SampSharp.GameMode.Factories
         /// <returns> The <see cref="BaseVehicle" /> created.</returns>
         public virtual BaseVehicle Create(VehicleModelType vehicletype, Vector3 position, float rotation, int color1,
             int color2,
-            int respawnDelay = -1, bool addAlarm = false)
+            int respawnDelay = BaseVehicle.DefaultRespawnDelay, bool addAlarm = false)
         {
             var id = new[] {449, 537, 538, 569, 570, 590}.Contains((int) vehicletype)
                 ? BaseVehicleFactoryInternal.Instance.AddStaticVehicleEx((int) vehicletype, position.X, position.Y, position.Z, rotation, color1,
@@ -77,30 +77,11 @@ namespace SampSharp.GameMode.Factories
         public virtual BaseVehicle CreateStatic(VehicleModelType vehicletype, Vector3 position, float rotation,
             int color1,
             int color2,
-            int respawnDelay, bool addAlarm = false)
+            int respawnDelay = BaseVehicle.DefaultRespawnDelay, bool addAlarm = false)
         {
             var id = BaseVehicleFactoryInternal.Instance.AddStaticVehicleEx((int) vehicletype, position.X, position.Y, position.Z, rotation, color1,
                 color2,
                 respawnDelay, addAlarm);
-
-            return id == BaseVehicle.InvalidId ? null : BaseVehicle.FindOrCreate(id);
-        }
-
-        /// <summary>
-        ///     Creates a static <see cref="BaseVehicle" /> in the world.
-        /// </summary>
-        /// <param name="vehicletype">The model for the vehicle.</param>
-        /// <param name="position">The coordinates for the vehicle.</param>
-        /// <param name="rotation">The facing angle for the vehicle.</param>
-        /// <param name="color1">The primary color ID.</param>
-        /// <param name="color2">The secondary color ID.</param>
-        /// <returns> The <see cref="BaseVehicle" /> created.</returns>
-        public virtual BaseVehicle CreateStatic(VehicleModelType vehicletype, Vector3 position, float rotation,
-            int color1,
-            int color2)
-        {
-            var id = BaseVehicleFactoryInternal.Instance.AddStaticVehicle((int) vehicletype, position.X, position.Y, position.Z, rotation, color1,
-                color2);
 
             return id == BaseVehicle.InvalidId ? null : BaseVehicle.FindOrCreate(id);
         }

@@ -28,6 +28,8 @@ namespace SampSharp.GameMode.World
     /// </summary>
     public partial class BaseVehicle : IdentifiedPool<BaseVehicle>, IWorldObject
     {
+        #region Constants
+        
         /// <summary>
         ///     Identifier indicating the handle is invalid.
         /// </summary>
@@ -37,6 +39,13 @@ namespace SampSharp.GameMode.World
         ///     Maximum number of vehicles which can exist.
         /// </summary>
         public const int Max = 2000;
+
+        /// <summary>
+        ///     Identifier indicating the default respawn delay without a driver.
+        /// </summary>
+        public const int DefaultRespawnDelay = -1;
+
+        #endregion
 
         #region Properties
 
@@ -570,7 +579,7 @@ namespace SampSharp.GameMode.World
         /// <returns> The <see cref="BaseVehicle" /> created.</returns>
         public static BaseVehicle Create(VehicleModelType vehicletype, Vector3 position, float rotation, int color1,
             int color2,
-            int respawnDelay = -1, bool addAlarm = false)
+            int respawnDelay = DefaultRespawnDelay, bool addAlarm = false)
         {
             var service = BaseMode.Instance.Services.GetService<IVehicleFactory>();
 
@@ -593,28 +602,11 @@ namespace SampSharp.GameMode.World
         /// <returns> The <see cref="BaseVehicle" /> created.</returns>
         public static BaseVehicle CreateStatic(VehicleModelType vehicleType, Vector3 position, float rotation,
             int color1, int color2,
-            int respawnDelay, bool addAlarm = false)
+            int respawnDelay = DefaultRespawnDelay, bool addAlarm = false)
         {
             var service = BaseMode.Instance.Services.GetService<IVehicleFactory>();
 
             return service?.CreateStatic(vehicleType, position, rotation, color1, color2, respawnDelay, addAlarm);
-        }
-
-        /// <summary>
-        ///     Creates a static <see cref="BaseVehicle" /> in the world.
-        /// </summary>
-        /// <param name="vehicleType">The model for the vehicle.</param>
-        /// <param name="position">The coordinates for the vehicle.</param>
-        /// <param name="rotation">The facing angle for the vehicle.</param>
-        /// <param name="color1">The primary color ID.</param>
-        /// <param name="color2">The secondary color ID.</param>
-        /// <returns> The <see cref="BaseVehicle" /> created.</returns>
-        public static BaseVehicle CreateStatic(VehicleModelType vehicleType, Vector3 position, float rotation,
-            int color1, int color2)
-        {
-            var service = BaseMode.Instance.Services.GetService<IVehicleFactory>();
-
-            return service?.CreateStatic(vehicleType, position, rotation, color1, color2);
         }
 
         /// <summary>
