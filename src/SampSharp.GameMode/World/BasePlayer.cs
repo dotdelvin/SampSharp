@@ -15,6 +15,7 @@
 using System;
 using System.Linq;
 using SampSharp.GameMode.Definitions;
+using SampSharp.GameMode.Definitions.SampSharp.GameMode.Definitions;
 using SampSharp.GameMode.Display;
 using SampSharp.GameMode.Events;
 using SampSharp.GameMode.Pools;
@@ -240,10 +241,10 @@ namespace SampSharp.GameMode.World
         /// <summary>
         ///     Gets or sets the skin of this Player.
         /// </summary>
-        public virtual int Skin
+        public virtual PlayerSkin Skin
         {
-            get => PlayerInternal.Instance.GetPlayerSkin(Id);
-            set => PlayerInternal.Instance.SetPlayerSkin(Id, value);
+            get => (PlayerSkin)PlayerInternal.Instance.GetPlayerSkin(Id);
+            set => PlayerInternal.Instance.SetPlayerSkin(Id, (int)value);
         }
 
         /// <summary>
